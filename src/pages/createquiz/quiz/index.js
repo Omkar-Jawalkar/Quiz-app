@@ -6,7 +6,7 @@ import QuizFoot from "@/components/createQuiz/QuizFoot";
 import { Container } from "@chakra-ui/react";
 const index = () => {
   return (
-    <Container>
+    <Container maxW={"container.md"}>
       <QuizHead />
       <QuizBody />
       <QuizFoot />

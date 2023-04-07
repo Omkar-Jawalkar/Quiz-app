@@ -1,9 +1,8 @@
-import React from 'react'
-
+import React from "react";
+import { Input, Flex, Heading, Text, Button } from "@chakra-ui/react";
+import Question from "./Question";
 const QuizBody = () => {
-  return (
-    <div>QuizBody</div>
-  )
-}
+  return <Question />;
+};
 
-export default QuizBody
+export default QuizBody;
