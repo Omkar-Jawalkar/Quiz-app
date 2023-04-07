@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Input,
   Flex,
@@ -9,9 +9,18 @@ import {
   NumberDecrementStepper,
   NumberInputField,
   NumberIncrementStepper,
+  Radio,
+  RadioGroup,
+  Divider,
+  Icon,
   NumberInputStepper,
 } from "@chakra-ui/react";
+import { BiRadioCircle } from "react-icons/bi";
+import { RxCross2 } from "react-icons/rx";
+import Link from "next/link";
 const Question = () => {
+  const [inputs, setInputs] = useState(["option 1"]);
+
   return (
     <Flex
       gap={7}
@@ -50,6 +59,58 @@ const Question = () => {
           </NumberInput>{" "}
         </Flex>
       </Flex>
+      {/* Radio Button */}
+      <Flex gap={2} direction={"column"}>
+        {inputs.map((text, index) => (
+          <>
+            <Flex
+              justifyContent={"flex-start"}
+              fontSize={"2xl"}
+              alignItems={"center"}
+              gap={3}
+            >
+              <BiRadioCircle cursor={"pointer"} />
+              <Input
+                maxW={"xs"}
+                variant={"flushed"}
+                placeholder={text}
+                key={index}
+              />
+              <Icon
+                color={"grey.50"}
+                _hover={{ color: "red.500" }}
+                cursor={"pointer"}
+                as={RxCross2}
+              />
+            </Flex>
+          </>
+        ))}
+        <Flex
+          my={2}
+          justifyContent={"flex-start"}
+          fontSize={"2xl"}
+          alignItems={"center"}
+          gap={3}
+        >
+          <BiRadioCircle cursor={"pointer"} />
+
+          <Text
+            cursor={"pointer"}
+            color={"blue.400"}
+            fontSize={"md"}
+            _hover={{ textDecoration: "underline" }}
+            onClick={() => {
+              const lastItem = inputs[inputs.length - 1];
+              const lastDigit = lastItem[lastItem.length - 1];
+              const addEle = `option ${parseInt(lastDigit) + 1}`;
+              setInputs([...inputs, addEle]);
+            }}
+          >
+            Add Inputs
+          </Text>
+        </Flex>
+      </Flex>
+      <Divider orientation="horizontal" />
     </Flex>
   );
 };
