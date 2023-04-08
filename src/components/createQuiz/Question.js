@@ -15,10 +15,13 @@ import {
   Icon,
   NumberInputStepper,
 } from "@chakra-ui/react";
+
 import { BiRadioCircle } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
-import Link from "next/link";
-const Question = () => {
+import { Switch } from "@chakra-ui/react";
+import { MdDelete } from "react-icons/md";
+
+const Question = ({ setQuestions }) => {
   const [inputs, setInputs] = useState(["option 1"]);
 
   return (
@@ -111,6 +114,18 @@ const Question = () => {
         </Flex>
       </Flex>
       <Divider orientation="horizontal" />
+      <Flex gap={3} alignItems={"center"} justifyContent={"flex-end"}>
+        <Icon
+          as={MdDelete}
+          color={"red.500"}
+          fontSize={"2xl"}
+          cursor={"pointer"}
+        />
+        <Divider orientation="vertical" />
+
+        <Text as="p"> Required </Text>
+        <Switch id="isRequired" isRequired />
+      </Flex>
     </Flex>
   );
 };

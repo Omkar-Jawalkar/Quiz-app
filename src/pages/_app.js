@@ -8,15 +8,18 @@ const roboto = Roboto({
 import { Flex } from "@chakra-ui/react";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import { MyContextProvider } from "@/context/myContext";
 
 export default function App({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <main className={roboto.className}>
         <Flex direction={"column"} minH={"100vh"}>
-          <Navbar />
-          <Component {...pageProps} />
-          <Footer />
+          <MyContextProvider>
+            <Navbar />
+            <Component {...pageProps} />
+            <Footer />
+          </MyContextProvider>
         </Flex>
       </main>
     </ChakraProvider>
