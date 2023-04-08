@@ -5,8 +5,9 @@ import QuizBody from "@/components/createQuiz/QuizBody";
 import QuizFoot from "@/components/createQuiz/QuizFoot";
 import { Container, Divider } from "@chakra-ui/react";
 const index = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [questions, setQuestions] = useState([]);
   console.log(title);
   return (
     <Container maxW={"container.md"}>
@@ -15,8 +16,8 @@ const index = () => {
         setTitle={setTitle}
         setDescription={setDescription}
       />
-      <QuizBody />
-      <QuizFoot title={title} description={description} />
+      <QuizBody questions={questions} setQuestions={setQuestions} />
+      <QuizFoot questions={questions} title={title} description={description} />
     </Container>
   );
 };

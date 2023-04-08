@@ -31,15 +31,31 @@ import { RxCross2 } from "react-icons/rx";
 import { Switch } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 
-const Question = ({ setQuestions }) => {
+const Question = ({ index, questions, setQuestions }) => {
   // this is for popover
   const { isOpen, onToggle, onClose } = useDisclosure();
-
   const [inputs, setInputs] = useState(["option"]);
   const [questionTitle, setQuestionTitle] = useState("");
   const [points, setPoints] = useState(1);
   const [answer, setAnswer] = useState("");
   const [isRequired, setIsRequired] = useState(false);
+
+  // all combine
+
+  // For setting the data in the question array
+  useEffect(() => {
+    const obj = {
+      questionTitle: questionTitle,
+      points: points,
+      isRequired: isRequired,
+      answer: answer,
+      inputs: inputs,
+    };
+    // console.log("obj", obj);
+    const updatedQuestions = [...questions];
+    updatedQuestions[index] = obj;
+    setQuestions(updatedQuestions);
+  }, [inputs, questionTitle, points, answer, isRequired]);
 
   // handle Input change of options
 
@@ -178,9 +194,9 @@ const Question = ({ setQuestions }) => {
                     <>
                       {text !== "option NaN" ? (
                         <Button
-                          onClick={() => {
+                          onClick={(e) => {
                             setAnswer(text);
-                            onClose;
+                            onClose();
                           }}
                         >
                           {text}
