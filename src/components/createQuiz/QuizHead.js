@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Input, Flex, Heading, Text, Button } from "@chakra-ui/react";
-const QuizHead = ({ title, setTitle, setDescription }) => {
-  useEffect(() => {
-    console.log(title);
-  }, [title]);
+const QuizHead = ({ setTitle, setDescription }) => {
   return (
     <Flex
       gap={7}

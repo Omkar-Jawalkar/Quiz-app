@@ -5,6 +5,7 @@ import Question from "./Question";
 
 const QuizBody = () => {
   const [questions, setQuestions] = useState([1]);
+  // To add the new question
   const addQuestion = () => {
     setQuestions([...questions, 1]);
   };

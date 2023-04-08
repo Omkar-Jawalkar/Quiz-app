@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Input,
+  useDisclosure,
   Flex,
   Heading,
   Text,
@@ -13,6 +14,15 @@ import {
   RadioGroup,
   Divider,
   Icon,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
   NumberInputStepper,
 } from "@chakra-ui/react";
 
@@ -22,7 +32,23 @@ import { Switch } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 
 const Question = ({ setQuestions }) => {
-  const [inputs, setInputs] = useState(["option 1"]);
+  // this is for popover
+  const { isOpen, onToggle, onClose } = useDisclosure();
+
+  const [inputs, setInputs] = useState(["option"]);
+  const [questionTitle, setQuestionTitle] = useState("");
+  const [points, setPoints] = useState(1);
+  const [answer, setAnswer] = useState("");
+  const [isRequired, setIsRequired] = useState(false);
+
+  // handle Input change of options
+
+  const handleInputChange = (e, index) => {
+    const { value } = e.target;
+    const updatedValues = [...inputs];
+    updatedValues[index] = value; // Update the value at the specified index
+    setInputs(updatedValues);
+  };
 
   return (
     <Flex
@@ -47,13 +73,26 @@ const Question = ({ setQuestions }) => {
           variant={"flushed"}
           size={"md"}
           placeholder="Question 1"
+          // Handle the question title
+          onChange={(e) => {
+            setQuestionTitle(e.target.value);
+          }}
         />
         {/* This is points field */}
         <Flex gap={2}>
           <Text color={"gray.400"} fontSize={"md"} as="p">
             Points
           </Text>
-          <NumberInput size="xs" maxW={16} defaultValue={5} min={0}>
+          <NumberInput
+            // Handled the points
+            onChange={(e) => {
+              setPoints(e);
+            }}
+            size="xs"
+            maxW={16}
+            defaultValue={5}
+            min={points}
+          >
             <NumberInputField />
             <NumberInputStepper>
               <NumberIncrementStepper />
@@ -76,8 +115,11 @@ const Question = ({ setQuestions }) => {
               <Input
                 maxW={"xs"}
                 variant={"flushed"}
-                placeholder={text}
+                placeholder={"option"}
                 key={index}
+                onChange={(e) => {
+                  handleInputChange(e, index);
+                }}
               />
               <Icon
                 color={"grey.50"}
@@ -97,6 +139,7 @@ const Question = ({ setQuestions }) => {
         >
           <BiRadioCircle cursor={"pointer"} />
 
+          {/* This is to add options */}
           <Text
             cursor={"pointer"}
             color={"blue.400"}
@@ -111,6 +154,46 @@ const Question = ({ setQuestions }) => {
           >
             Add Inputs
           </Text>
+
+          <Popover isLazy>
+            <PopoverTrigger>
+              <Button
+                size={"sm"}
+                backgroundColor={answer === "" ? "yellow.400" : "green.400"}
+                color={"black"}
+              >
+                Answer
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent fontSize={"sm"}>
+              <PopoverHeader fontWeight="semibold">
+                Select an Answer to this Question
+              </PopoverHeader>
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverBody>
+                {/* This is to select the answer */}
+                <Flex direction={"column"} gap={2}>
+                  {inputs.map((text, index) => (
+                    <>
+                      {text !== "option NaN" ? (
+                        <Button
+                          onClick={() => {
+                            setAnswer(text);
+                            onClose;
+                          }}
+                        >
+                          {text}
+                        </Button>
+                      ) : (
+                        ""
+                      )}
+                    </>
+                  ))}
+                </Flex>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </Flex>
       </Flex>
       <Divider orientation="horizontal" />
@@ -124,7 +207,13 @@ const Question = ({ setQuestions }) => {
         <Divider orientation="vertical" />
 
         <Text as="p"> Required </Text>
-        <Switch id="isRequired" isRequired />
+        <Switch
+          onChange={(e) => {
+            setIsRequired(!isRequired);
+          }}
+          id="isRequired"
+          isChecked={isRequired}
+        />
       </Flex>
     </Flex>
   );
