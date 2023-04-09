@@ -11,8 +11,8 @@ const HeroSection = () => {
   return (
     <Flex
       direction={{ base: "column", lg: "row" }}
-      mt={32}
       mx={2}
+      minH={"75vh"}
       justifyContent={"center"}
       alignItems={"center"}
     >
@@ -49,9 +49,6 @@ const HeroSection = () => {
       <Flex
         backgroundColor={"teal.50"}
         m={3}
-        onClick={(e) => {
-          handlePush(e, "/attemptquiz");
-        }}
         direction={"column"}
         gap={6}
         maxW={"lg"}
@@ -67,7 +64,13 @@ const HeroSection = () => {
           voluptates.
         </Text>
         <Divider />
-        <Button color={"white"} backgroundColor={"green.400"}>
+        <Button
+          onClick={(e) => {
+            handlePush(e, "/attemptquiz");
+          }}
+          color={"white"}
+          backgroundColor={"green.400"}
+        >
           Attempt Quiz
         </Button>
       </Flex>

@@ -34,7 +34,7 @@ import { MdDelete } from "react-icons/md";
 const Question = ({ index, questions, setQuestions }) => {
   // this is for popover
   const { isOpen, onToggle, onClose } = useDisclosure();
-  const [inputs, setInputs] = useState(["option"]);
+  const [inputs, setInputs] = useState([""]);
   const [questionTitle, setQuestionTitle] = useState("");
   const [points, setPoints] = useState(1);
   const [answer, setAnswer] = useState("");
@@ -65,7 +65,6 @@ const Question = ({ index, questions, setQuestions }) => {
     updatedValues[index] = value; // Update the value at the specified index
     setInputs(updatedValues);
   };
-
   return (
     <Flex
       gap={7}
@@ -136,12 +135,20 @@ const Question = ({ index, questions, setQuestions }) => {
                 onChange={(e) => {
                   handleInputChange(e, index);
                 }}
+                value={text}
               />
               <Icon
                 color={"grey.50"}
                 _hover={{ color: "red.500" }}
                 cursor={"pointer"}
                 as={RxCross2}
+                // handle delete
+                onClick={(e) => {
+                  const updatedValues = [...inputs];
+                  updatedValues.splice(index, 1);
+                  console.log("newValues", updatedValues);
+                  setInputs(updatedValues);
+                }}
               />
             </Flex>
           </>
@@ -162,10 +169,7 @@ const Question = ({ index, questions, setQuestions }) => {
             fontSize={"md"}
             _hover={{ textDecoration: "underline" }}
             onClick={() => {
-              const lastItem = inputs[inputs.length - 1];
-              const lastDigit = lastItem[lastItem.length - 1];
-              const addEle = `option ${parseInt(lastDigit) + 1}`;
-              setInputs([...inputs, addEle]);
+              setInputs([...inputs, ""]);
             }}
           >
             Add Inputs
@@ -219,6 +223,13 @@ const Question = ({ index, questions, setQuestions }) => {
           color={"red.500"}
           fontSize={"2xl"}
           cursor={"pointer"}
+          // Handle delete of questions
+
+          onClick={(e) => {
+            const updatedQuestions = [...questions];
+            updatedQuestions.splice(index, 1);
+            setQuestions(updatedQuestions);
+          }}
         />
         <Divider orientation="vertical" />
 

@@ -6,11 +6,17 @@ import { useContext } from "react";
 import { useToast } from "@chakra-ui/react";
 
 const QuizFoot = ({ questions, title, description }) => {
-  const { quiz, setQuiz } = useContext(MyContext);
+  const { quiz, setData, data, setQuiz } = useContext(MyContext);
   let checkAll = "good";
   const toast = useToast();
 
   const router = useRouter();
+  useEffect(() => {
+    if (quiz.title.length !== 0) {
+      setData([...data, quiz]);
+      setQuiz({ title: "", description: "", questions: [] });
+    }
+  }, [quiz]);
 
   const handleSave = () => {
     if (title === null) {
@@ -31,6 +37,15 @@ const QuizFoot = ({ questions, title, description }) => {
       });
       return;
     }
+    if (questions.length === 0) {
+      toast({
+        title: "Please add a Question",
+        status: "warning",
+        isClosable: true,
+        duration: 3000,
+      });
+      return;
+    }
     questions.map((question, index) => {
       if (question.questionTitle === "") {
         toast({
@@ -45,7 +60,7 @@ const QuizFoot = ({ questions, title, description }) => {
         checkAll = "bad";
         return;
       }
-      if (question.inputs.length <= 2 || question.inputs[0] === "option") {
+      if (question.inputs.length <= 1 || question.inputs[0] === "option") {
         toast({
           title: `You gotta add at least two options at question ${index + 1}`,
           status: "info",
@@ -83,9 +98,9 @@ const QuizFoot = ({ questions, title, description }) => {
       isClosable: true,
       duration: 3000,
     });
-    router.push("/createquiz");
 
-    console.log("quiz", quiz);
+    console.log("This is data", data);
+    router.push("/createquiz");
   };
 
   return (
@@ -98,6 +113,7 @@ const QuizFoot = ({ questions, title, description }) => {
     >
       <Button
         onClick={(e) => {
+          e.preventDefault();
           router.push("/createquiz");
         }}
         color={"whiteAlpha.900"}

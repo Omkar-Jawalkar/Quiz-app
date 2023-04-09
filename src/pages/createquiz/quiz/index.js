@@ -8,7 +8,6 @@ const index = () => {
   const [title, setTitle] = useState(null);
   const [description, setDescription] = useState(null);
   const [questions, setQuestions] = useState([]);
-  console.log(title);
   return (
     <Container maxW={"container.md"}>
       <QuizHead

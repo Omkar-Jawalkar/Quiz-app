@@ -7,10 +7,12 @@ const MyContextProvider = ({ children }) => {
     title: "",
     description: "",
     questions: [],
-  }); // Quiz is for considering one quiz
+  });
+  const [user, setUser] = useState("");
+  // Quiz is for considering one quiz
 
   return (
-    <MyContext.Provider value={{ data, setData, quiz, setQuiz }}>
+    <MyContext.Provider value={{ data, user, setUser, setData, quiz, setQuiz }}>
       {children}
     </MyContext.Provider>
   );
