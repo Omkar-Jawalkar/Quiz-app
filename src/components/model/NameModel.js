@@ -15,10 +15,14 @@ import {
   Divider,
   useToast,
 } from "@chakra-ui/react";
+import { doc, setDoc } from "firebase/firestore";
+import { app, firebaseConfig } from "@/services/firebase";
 import { MyContext } from "@/context/myContext";
 import { useContext } from "react";
+import { getFirestore } from "firebase/firestore";
 const NameModel = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const db = getFirestore(app);
   const initialRef = React.useRef();
   const finalRef = React.useRef();
   const toast = useToast();
@@ -31,6 +35,17 @@ const NameModel = () => {
       onOpen();
     }
   }, []);
+
+  // This is for validating email
+
+  function validateEmail(email) {
+    // Regular expression for email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Test the email against the regex
+    return emailRegex.test(email);
+  }
+
   return (
     <Modal
       initialFocusRef={initialRef}
@@ -43,7 +58,7 @@ const NameModel = () => {
     >
       <OverlayOne />;
       <ModalContent>
-        <ModalHeader>Please Enter your Name 🙇‍♂️</ModalHeader>
+        <ModalHeader>Please Enter your Email 🙇‍♂️</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Flex
@@ -53,7 +68,7 @@ const NameModel = () => {
             textAlign={"center"}
           >
             <Text fontSize={"lg"} as="p">
-              Hey, would you mind entering your name? 🙋‍♂️
+              Hey, would you mind entering your Email? 🙋‍♂️
             </Text>
             <Divider />
             <Input
@@ -67,20 +82,45 @@ const NameModel = () => {
         <ModalFooter>
           <Flex w={"full"}>
             <Button
-              onClick={(e) => {
+              onClick={async (e) => {
                 e.preventDefault();
                 const name = document.getElementById("user_name").value;
-                if (name.length < 6) {
+                console.log(name);
+                const val = validateEmail(name);
+                console.log("val", val);
+                if (val === false) {
                   toast({
-                    title: "Please enter a name with more than 6 characters",
-                    status: "info",
+                    title: "Please enter a valid Email",
+                    status: "warning",
                     isClosable: true,
                     duration: 3000,
                   });
                   return;
                 } else {
-                  setUser(name);
-                  onClose();
+                  try {
+                    await setDoc(
+                      doc(db, "Users", name),
+                      { capital: true },
+                      { merge: true }
+                    );
+                    toast({
+                      title: " DONEONE 🎉 ",
+                      status: "success",
+                      duration: 3000,
+                      isClosable: true,
+                    });
+                    setUser(name);
+                    onClose();
+                  } catch (e) {
+                    console.error("Error adding document: ", e);
+                    toast({
+                      title: "Error adding document: ",
+                      status: "error",
+                      duration: 3000,
+                      isClosable: true,
+                    });
+                    onClose();
+                  }
                 }
               }}
               textAlign={"center"}

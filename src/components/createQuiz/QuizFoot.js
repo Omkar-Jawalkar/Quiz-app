@@ -4,18 +4,41 @@ import { useRouter } from "next/router";
 import { MyContext } from "@/context/myContext";
 import { useContext } from "react";
 import { useToast } from "@chakra-ui/react";
+import { getFirestore } from "firebase/firestore";
+import { app } from "@/services/firebase";
+
+// Database handling
+
+import { doc, updateDoc } from "firebase/firestore";
 
 const QuizFoot = ({ questions, title, description }) => {
-  const { quiz, setData, data, setQuiz } = useContext(MyContext);
+  // Database Object
+  const db = getFirestore(app);
+
+  // Getting User
+
+  const { user, quiz, setData, data, setQuiz } = useContext(MyContext);
   let checkAll = "good";
   const toast = useToast();
 
   const router = useRouter();
   useEffect(() => {
-    if (quiz.title.length !== 0) {
-      setData([...data, quiz]);
-      setQuiz({ title: "", description: "", questions: [] });
-    }
+    const handleSetData = async () => {
+      if (quiz.title.length !== 0) {
+        try {
+          const result = await updateDoc(doc(db, "Users", user), {
+            data: [...data, quiz],
+          });
+          console.log("Success", result);
+          setData([...data, quiz]);
+          setQuiz({ title: "", description: "", questions: [] });
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    };
+
+    handleSetData();
   }, [quiz]);
 
   const handleSave = () => {
