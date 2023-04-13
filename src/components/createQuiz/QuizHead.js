@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Input, Flex, Heading, Text, Button } from "@chakra-ui/react";
-const QuizHead = ({ setTitle, setDescription }) => {
+const QuizHead = ({
+  title,
+  description,
+  update = false,
+  setTitle,
+  setDescription,
+}) => {
   return (
     <Flex
       gap={7}
@@ -17,6 +23,7 @@ const QuizHead = ({ setTitle, setDescription }) => {
         variant="flushed"
         placeholder="Title"
         size="lg"
+        value={title}
       />
 
       <Input
@@ -26,6 +33,7 @@ const QuizHead = ({ setTitle, setDescription }) => {
         size={"sm"}
         variant={"flushed"}
         placeholder="Description"
+        value={description}
       />
     </Flex>
   );

@@ -3,15 +3,26 @@ import { Input, Icon, Flex, Heading, Text, Button } from "@chakra-ui/react";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import Question from "./Question";
 
-const QuizBody = ({ questions, setQuestions }) => {
+const QuizBody = ({ update, questions, setQuestions }) => {
   // To add the new question
   const addQuestion = () => {
-    setQuestions([...questions, 1]);
+    setQuestions([
+      ...questions,
+      {
+        questionTitle: "",
+        points: 1,
+        isRequired: false,
+        answer: "",
+        inputs: [""],
+      },
+    ]);
   };
   return (
     <Flex gap={3} direction={"column"}>
       {questions.map((question, index) => (
         <Question
+          update={update}
+          question={question}
           questions={questions}
           key={index}
           index={index}

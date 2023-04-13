@@ -11,7 +11,7 @@ import { app } from "@/services/firebase";
 
 import { doc, updateDoc } from "firebase/firestore";
 
-const QuizFoot = ({ questions, title, description }) => {
+const QuizFoot = ({ id, update = false, questions, title, description }) => {
   // Database Object
   const db = getFirestore(app);
 
@@ -23,22 +23,60 @@ const QuizFoot = ({ questions, title, description }) => {
 
   const router = useRouter();
   useEffect(() => {
+    // To Save Data
     const handleSetData = async () => {
       if (quiz.title.length !== 0) {
         try {
           const result = await updateDoc(doc(db, "Users", user), {
             data: [...data, quiz],
           });
-          console.log("Success", result);
           setData([...data, quiz]);
-          setQuiz({ title: "", description: "", questions: [] });
+          if (update === false) {
+            setQuiz({ title: "", description: "", questions: [] });
+          }
         } catch (err) {
           console.log(err);
         }
       }
     };
 
-    handleSetData();
+    // To Update Data
+
+    const handleUpdateData = async () => {
+      if (quiz.title.length !== 0) {
+        const normalData = [...data];
+        normalData[id - 1] = quiz;
+        try {
+          await updateDoc(doc(db, "Users", user), {
+            data: normalData,
+          });
+          toast({
+            title: "Successfully updated the quiz",
+            duration: 3000,
+            status: "success",
+          });
+          setData(normalData);
+          if (update === false) {
+            setQuiz({ title: "", description: "", questions: [] });
+          }
+        } catch (err) {
+          toast({
+            title: "Something went wrong",
+            description: "Error while updating the quiz",
+            duration: 3000,
+            status: "error",
+            isClosable: true,
+          });
+          console.log(err);
+        }
+      }
+    };
+
+    if (update === false) {
+      handleSetData();
+    } else {
+      handleUpdateData();
+    }
   }, [quiz]);
 
   const handleSave = () => {
@@ -137,6 +175,9 @@ const QuizFoot = ({ questions, title, description }) => {
       <Button
         onClick={(e) => {
           e.preventDefault();
+          if (update === true) {
+            setQuiz({ title: "", description: "", questions: [] });
+          }
           router.push("/createquiz");
         }}
         color={"whiteAlpha.900"}
@@ -151,7 +192,7 @@ const QuizFoot = ({ questions, title, description }) => {
         color={"whiteAlpha.900"}
         backgroundColor={"green.400"}
       >
-        Save Quiz
+        {update === true ? "Update Quiz" : "Save Quiz"}
       </Button>
     </Flex>
   );

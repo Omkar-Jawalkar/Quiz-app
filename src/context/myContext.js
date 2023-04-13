@@ -19,12 +19,18 @@ const MyContextProvider = ({ children }) => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-          const data = docSnap.data();
-          console.log("Document data:", data.data);
-
+          const data = docSnap.data().data;
+          if (data === undefined) {
+            return;
+          }
+          const dataArray = Object.keys(data)
+            .filter((key) => !isNaN(parseInt(key)))
+            .map((key) => data[key]);
+          console.log("dataArray", dataArray);
           // Length property not working fix this
           // setData(docSnap.data.data);
           // docSnap.data() will be undefined in this case
+          setData(dataArray);
         }
       }
     };

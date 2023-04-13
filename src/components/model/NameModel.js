@@ -15,6 +15,7 @@ import {
   Divider,
   useToast,
 } from "@chakra-ui/react";
+import validateEmail from "../../utils/index";
 import { doc, setDoc } from "firebase/firestore";
 import { app, firebaseConfig } from "@/services/firebase";
 import { MyContext } from "@/context/myContext";
@@ -38,14 +39,6 @@ const NameModel = () => {
 
   // This is for validating email
 
-  function validateEmail(email) {
-    // Regular expression for email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Test the email against the regex
-    return emailRegex.test(email);
-  }
-
   return (
     <Modal
       initialFocusRef={initialRef}
@@ -59,7 +52,6 @@ const NameModel = () => {
       <OverlayOne />;
       <ModalContent>
         <ModalHeader>Please Enter your Email 🙇‍♂️</ModalHeader>
-        <ModalCloseButton />
         <ModalBody>
           <Flex
             direction={"column"}
@@ -109,6 +101,7 @@ const NameModel = () => {
                       duration: 3000,
                       isClosable: true,
                     });
+                    localStorage.setItem("user_name", name);
                     setUser(name);
                     onClose();
                   } catch (e) {

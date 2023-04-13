@@ -31,14 +31,22 @@ import { RxCross2 } from "react-icons/rx";
 import { Switch } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 
-const Question = ({ index, questions, setQuestions }) => {
+const Question = ({ update, question, index, questions, setQuestions }) => {
   // this is for popover
   const { isOpen, onToggle, onClose } = useDisclosure();
-  const [inputs, setInputs] = useState([""]);
-  const [questionTitle, setQuestionTitle] = useState("");
-  const [points, setPoints] = useState(1);
-  const [answer, setAnswer] = useState("");
-  const [isRequired, setIsRequired] = useState(false);
+  const [inputs, setInputs] = useState(
+    update === true ? question.inputs : [""]
+  );
+  const [questionTitle, setQuestionTitle] = useState(
+    update === true ? question.questionTitle : ""
+  );
+
+  console.log("questionTitle", question.questionTitle);
+  const [points, setPoints] = useState(update === true ? question.points : 1);
+  const [answer, setAnswer] = useState(update === true ? question.answer : "");
+  const [isRequired, setIsRequired] = useState(
+    update === true ? question.isRequired : false
+  );
 
   // all combine
 
@@ -87,8 +95,9 @@ const Question = ({ index, questions, setQuestions }) => {
           maxW={"lg"}
           variant={"flushed"}
           size={"md"}
-          placeholder="Question 1"
+          placeholder={`Question ${index + 1}`}
           // Handle the question title
+          value={questionTitle}
           onChange={(e) => {
             setQuestionTitle(e.target.value);
           }}
@@ -105,8 +114,8 @@ const Question = ({ index, questions, setQuestions }) => {
             }}
             size="xs"
             maxW={16}
-            defaultValue={5}
-            min={points}
+            defaultValue={points}
+            min={1}
           >
             <NumberInputField />
             <NumberInputStepper>

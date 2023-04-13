@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { doc, updateDoc, deleteField } from "firebase/firestore";
+import { db } from "@/services/firebase";
 import {
   Box,
   Button,
@@ -17,22 +19,46 @@ import { useContext } from "react";
 const index = () => {
   const router = useRouter();
   const { data, user, quiz, setData } = useContext(MyContext);
-  // for texting data
+  // for testing data
   // setData([
   //   {
   //     title: "Heading two",
-  //     description:
-  //       " Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets con",
+  //     description: " asdasdasd",
   //     questions: [],
   //   },
   //   {
   //     title: "Heading two",
-  //     description:
-  //       "m Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets con",
+  //     description: "asdasdasdasd",
   //     questions: [],
   //   },
   // ]);
   // console.log(data);
+
+  const handleDelete = async (index) => {
+    try {
+      const filteredArray = data.filter((item, i) => i !== index);
+      console.log(filteredArray);
+
+      const quizRef = doc(db, "Users", user);
+      await updateDoc(quizRef, {
+        data: filteredArray,
+      });
+      setData(filteredArray);
+      toast({
+        title: "Quiz Deleted",
+        description: "Quiz has been deleted successfully",
+        duration: 1000,
+        status: "success",
+      });
+    } catch (err) {
+      toast({
+        title: "Error Please try again",
+        duration: 1000,
+        status: "error",
+      });
+    }
+  };
+
   const toast = useToast();
   return (
     <>
@@ -75,14 +101,14 @@ const index = () => {
           <Flex
             maxW={"100%"}
             justifySelf={"center"}
-            alignItems={"stretch"}
+            alignItems={"center"}
             direction={{ base: "column", lg: "column" }}
           >
             {data.map((quiz, index) => (
               <Flex
                 key={index}
                 m={4}
-                maxW={"2xl"}
+                minW={{ base: "100%", lg: "2xl", xl: "4xl" }}
                 boxShadow={"sm"}
                 _hover={{ boxShadow: "md" }}
                 direction={"column"}
@@ -95,26 +121,24 @@ const index = () => {
                   Title : {quiz.title}
                 </Heading>
                 <Text fontSize={"xl"} as={"p"}>
-                  <b>Description</b> : {quiz.description} 🙋‍♂️
+                  <b>Description</b> : {quiz.description}
                 </Text>
                 <Flex gap={2} justifyContent={"flex-end"} alignItems={"center"}>
-                  <Button color={"whiteAlpha.900"} backgroundColor={"blue.400"}>
+                  <Button
+                    onClick={(e) => {
+                      router.push(`/createquiz/editquiz/${index + 1}`);
+                    }}
+                    color={"whiteAlpha.900"}
+                    backgroundColor={"blue.400"}
+                  >
                     {" "}
                     Edit Quiz{" "}
                   </Button>
                   <Button
                     color={"whiteAlpha.900"}
                     onClick={(e) => {
-                      const updatedData = [...data];
-                      updatedData.splice(index, 1);
-                      setData(updatedData);
-                      toast({
-                        title: "Quiz Deleted",
-                        description: "Quiz has been deleted successfully",
-                        status: "success",
-                        duration: 2000,
-                        isClosable: true,
-                      });
+                      // handle Delete
+                      handleDelete(index);
                     }}
                     backgroundColor={"red.400"}
                   >
