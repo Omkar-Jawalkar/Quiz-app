@@ -101,14 +101,14 @@ const index = () => {
           <Flex
             maxW={"100%"}
             justifySelf={"center"}
-            alignItems={"center"}
+            alignItems={"stretch"}
             direction={{ base: "column", lg: "column" }}
           >
             {data.map((quiz, index) => (
               <Flex
                 key={index}
-                m={4}
-                minW={{ base: "100%", lg: "2xl", xl: "4xl" }}
+                m={8}
+                maxW={"5xl"}
                 boxShadow={"sm"}
                 _hover={{ boxShadow: "md" }}
                 direction={"column"}
@@ -117,11 +117,11 @@ const index = () => {
                 rounded={"xl"}
                 p={4}
               >
-                <Heading fontSize={"2xl"} as="h3">
-                  Title : {quiz.title}
+                <Heading textAlign={"center"} fontSize={"2xl"} as="h3">
+                  {quiz.title}
                 </Heading>
-                <Text fontSize={"xl"} as={"p"}>
-                  <b>Description</b> : {quiz.description}
+                <Text textAlign={"center"} fontSize={"xl"} as={"p"}>
+                  {quiz.description}
                 </Text>
                 <Flex gap={2} justifyContent={"flex-end"} alignItems={"center"}>
                   <Button

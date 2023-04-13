@@ -21,6 +21,7 @@ const MyContextProvider = ({ children }) => {
         if (docSnap.exists()) {
           const data = docSnap.data().data;
           if (data === undefined) {
+            setData([]);
             return;
           }
           const dataArray = Object.keys(data)
