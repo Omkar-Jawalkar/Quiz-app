@@ -10,6 +10,8 @@ import {
 import { useRouter } from "next/router";
 import { MyContext } from "@/context/myContext";
 import { useContext } from "react";
+import RenderQuestions from "@/components/counter/RenderQuestions";
+import ReverseCountdownTimer from "@/components/counter/ReverseCountdownTimer";
 const ShowQuiz = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -25,13 +27,31 @@ const ShowQuiz = () => {
   return (
     <Flex
       m={10}
-      minH={"50vh"}
+      minH={"10vh"}
       justifyContent={"center"}
       alignItems={"center"}
       gap={10}
       direction={"column"}
     >
-      <Heading fontSize={"4xl"}> {renderData.title} </Heading>
+      <Flex
+        direction={{ base: "column", lg: "row" }}
+        w={"100%"}
+        gap={4}
+        justifyContent={{ base: "center", md: "space-between" }}
+        alignItems={{ base: "center", lg: "flex-start" }}
+      >
+        <Heading fontSize={"4xl"}> {renderData.title} </Heading>
+        <ReverseCountdownTimer minutes={1} />
+      </Flex>
+      <Flex justifyContent={"center"} alignItems={"center"} w={"100%"}>
+        <RenderQuestions />
+      </Flex>
+
+      <Flex m={4} justifyContent={"center"} alignItems={"center"}>
+        <Button color="white" backgroundColor={"red.400"}>
+          End Quiz
+        </Button>
+      </Flex>
     </Flex>
   );
 };
