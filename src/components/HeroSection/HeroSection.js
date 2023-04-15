@@ -29,10 +29,9 @@ const HeroSection = () => {
       >
         <Heading as={"h2"}>Create Quiz</Heading>
         <Text>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo aut at
-          tempore consequatur vitae fugit dolores, quo quaerat rem culpa ea
-          mollitia magni accusantium odit odio distinctio exercitationem maiores
-          voluptates.
+          Engage your audience with dynamic quizzes! Create timed quizzes with
+          multiple question types and customizable designs on our user-friendly
+          website. Perfect for education, team-building, and fun. Try it now!
         </Text>
         <Divider />
         <Button
@@ -58,10 +57,10 @@ const HeroSection = () => {
       >
         <Heading as={"h2"}>Attempt Quiz</Heading>
         <Text>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo aut at
-          tempore consequatur vitae fugit dolores, quo quaerat rem culpa ea
-          mollitia magni accusantium odit odio distinctio exercitationem maiores
-          voluptates.
+          Elevate your quiz experience! Create dynamic quizzes with timers,
+          varied question types, and customizable designs on our user-friendly
+          website. Perfect for testing knowledge, challenging participants, and
+          promoting engagement. Try it now.
         </Text>
         <Divider />
         <Button
