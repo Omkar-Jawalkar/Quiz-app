@@ -11,6 +11,13 @@ const MyContextProvider = ({ children }) => {
     questions: [],
   });
   const [user, setUser] = useState("");
+
+  const [finalResult, setFinalResult] = useState({
+    pointsScored: 0,
+    totalPoints: 0,
+    totalQuestionsCount: 0,
+    correctAnswerCount: 0,
+  });
   // Quiz is for considering one quiz
   useEffect(() => {
     const getData = async () => {
@@ -39,7 +46,18 @@ const MyContextProvider = ({ children }) => {
     getData();
   }, [user]);
   return (
-    <MyContext.Provider value={{ data, user, setUser, setData, quiz, setQuiz }}>
+    <MyContext.Provider
+      value={{
+        data,
+        user,
+        finalResult,
+        setFinalResult,
+        setUser,
+        setData,
+        quiz,
+        setQuiz,
+      }}
+    >
       {children}
     </MyContext.Provider>
   );

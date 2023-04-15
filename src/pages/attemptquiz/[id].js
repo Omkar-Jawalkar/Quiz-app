@@ -12,6 +12,7 @@ import { MyContext } from "@/context/myContext";
 import { useContext } from "react";
 import RenderQuestions from "@/components/counter/RenderQuestions";
 import ReverseCountdownTimer from "@/components/counter/ReverseCountdownTimer";
+import index from ".";
 const ShowQuiz = () => {
   const router = useRouter();
   const { id } = router.query;
@@ -21,6 +22,12 @@ const ShowQuiz = () => {
   const { data } = useContext(MyContext);
 
   const [renderData, setRenderData] = useState(data[id - 1]);
+
+  // Current Question State
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  
 
   if (!renderData) return <div>Loading...</div>;
 
@@ -44,7 +51,13 @@ const ShowQuiz = () => {
         <ReverseCountdownTimer minutes={1} />
       </Flex>
       <Flex justifyContent={"center"} alignItems={"center"} w={"100%"}>
-        <RenderQuestions />
+        <RenderQuestions
+    
+          renderData={renderData}
+          currentQuestion={currentQuestion}
+          setCurrentQuestion={setCurrentQuestion}
+          questionsLength={renderData.questions.length}
+        />
       </Flex>
 
       <Flex m={4} justifyContent={"center"} alignItems={"center"}>
