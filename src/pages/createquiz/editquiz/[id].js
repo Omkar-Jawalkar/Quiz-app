@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import QuizBody from "@/components/createQuiz/QuizBody";
 import QuizFoot from "@/components/createQuiz/QuizFoot";
 import QuizHead from "@/components/createQuiz/QuizHead";
 import { Container } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { MyContext } from "@/context/myContext";
-import { useContext } from "react";
+
 import Error from "next/error";
-const id = () => {
+const Index = () => {
   // Getting the ID
   const router = useRouter();
   const { id } = router.query;
 
   // this is data
   const { data } = useContext(MyContext);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [questions, setQuestions] = useState([]);
 
   console.log("id", id);
   if ((id < 1 && id > data.length) || data.length === 0) {
@@ -25,18 +29,13 @@ const id = () => {
     return <Error statusCode={404}></Error>;
   }
 
-  const [title, setTitle] = useState(mydata.title);
-  const [description, setDescription] = useState(mydata.description);
+  setTitle(mydata.title);
+  setDescription(mydata.description);
+  setQuestions(mydata.questions);
 
-  // const dataArray = Object.keys(mydata.questions)
-  //   .filter((key) => !isNaN(parseInt(key)))
-  //   .map((key) => data[key]);
-
-  const [questions, setQuestions] = useState(mydata.questions);
-
-  useEffect(() => {
-    console.log("questions", questions);
-  }, [questions]);
+  // useEffect(() => {
+  //   console.log("questions", questions);
+  // }, [questions]);
 
   return (
     <Container maxW={"container.md"}>
@@ -63,4 +62,4 @@ const id = () => {
   );
 };
 
-export default id;
+export default Index;

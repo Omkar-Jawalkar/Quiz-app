@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { MyContext } from "@/context/myContext";
-import { useContext } from "react";
 import { Flex, Heading, Button, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-const index = () => {
+const Index = () => {
   // importing Context
 
   const { finalResult } = useContext(MyContext);
@@ -27,4 +26,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

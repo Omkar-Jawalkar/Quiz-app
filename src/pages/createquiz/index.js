@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import { MyContext } from "@/context/myContext";
 import NameModel from "@/components/model/NameModel";
 import { useContext } from "react";
-const index = () => {
+const Index = () => {
   const router = useRouter();
   const { data, user, quiz, setData } = useContext(MyContext);
   // for testing data
@@ -155,4 +155,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

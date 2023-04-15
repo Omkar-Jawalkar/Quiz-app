@@ -12,7 +12,7 @@ import MyAlertBox from "@/components/AlertBox/AlertBox";
 import { MyContext } from "@/context/myContext";
 import { useContext } from "react";
 import { useRouter } from "next/router";
-const index = () => {
+const Index = () => {
   //  This is Router
 
   const router = useRouter();
@@ -93,4 +93,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

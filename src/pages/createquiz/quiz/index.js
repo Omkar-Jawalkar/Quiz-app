@@ -6,7 +6,7 @@ import QuizFoot from "@/components/createQuiz/QuizFoot";
 import { Container } from "@chakra-ui/react";
 import { MyContext } from "@/context/myContext";
 import { useContext } from "react";
-const index = () => {
+const Index = () => {
   const { data } = useContext(MyContext);
 
   const [title, setTitle] = useState(null);
@@ -30,4 +30,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
