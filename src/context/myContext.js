@@ -34,7 +34,7 @@ const MyContextProvider = ({ children }) => {
           const dataArray = Object.keys(data)
             .filter((key) => !isNaN(parseInt(key)))
             .map((key) => data[key]);
-          console.log("dataArray", dataArray);
+          // console.log("dataArray", dataArray);
           // Length property not working fix this
           // setData(docSnap.data.data);
           // docSnap.data() will be undefined in this case

@@ -47,12 +47,12 @@ const RenderQuestions = ({
 
   useEffect(() => {
     setQuestionsToDisplay(renderData.questions[currentQuestion]);
-    console.log(questionsToDisplay);
+    // console.log(questionsToDisplay);
   }, [currentQuestion]);
 
   useEffect(() => {
     let sum = 0;
-    let totalQuestionCount = renderData.questions.length;
+    let totalQuestionsCount = renderData.questions.length;
     let totalPoints = 0;
     let correctAnswerCount = 0;
     for (let i = 0; i < hashMap.length; i++) {
@@ -65,28 +65,28 @@ const RenderQuestions = ({
       totalPoints += parseInt(renderData.questions[i].points);
     }
 
-    console.log(
-      "sum",
-      sum,
-      "totalQuestionCount",
-      totalQuestionCount,
-      "totalPoints",
-      totalPoints,
-      "correctAnswerCount",
-      correctAnswerCount,
-      "hashMap",
-      hashMap
-    );
-    // setFinalResult({
-    //   pointsScored: sum,
-    //   totalQuestionCount: totalQuestionCount,
-    //   totalPoints: totalPoints,
-    //   correctAnswerCount: correctAnswerCount,
-    // });
+    // console.log(
+    //   "sum",
+    //   sum,
+    //   "totalQuestionCount",
+    //   totalQuestionCount,
+    //   "totalPoints",
+    //   totalPoints,
+    //   "correctAnswerCount",
+    //   correctAnswerCount,
+    //   "hashMap",
+    //   hashMap
+    // );
+    setFinalResult({
+      pointsScored: sum,
+      totalQuestionsCount: totalQuestionsCount,
+      totalPoints: totalPoints,
+      correctAnswerCount: correctAnswerCount,
+    });
   }, [hashMap]);
 
   useEffect(() => {
-    console.log("finalResult", finalResult);
+    // console.log("finalResult", finalResult);
   }, [finalResult]);
   // handle Submit and next button
 
@@ -100,7 +100,7 @@ const RenderQuestions = ({
       }
       setTimeout(() => {
         router.push("/result");
-      }, 3000);
+      }, 500);
       return;
     }
     if (currentQuestion < questionsLength) {

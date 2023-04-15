@@ -35,7 +35,7 @@ const QuizFoot = ({ id, update = false, questions, title, description }) => {
             setQuiz({ title: "", description: "", questions: [] });
           }
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       }
     };
@@ -67,7 +67,7 @@ const QuizFoot = ({ id, update = false, questions, title, description }) => {
             status: "error",
             isClosable: true,
           });
-          console.log(err);
+          // console.log(err);
         }
       }
     };
@@ -160,7 +160,7 @@ const QuizFoot = ({ id, update = false, questions, title, description }) => {
       duration: 3000,
     });
 
-    console.log("This is data", data);
+    // console.log("This is data", data);
     router.push("/createquiz");
   };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { doc, updateDoc, deleteField } from "firebase/firestore";
 import { db } from "@/services/firebase";
 import {
+  Badge,
   Box,
   Button,
   Flex,
@@ -37,7 +38,7 @@ const Index = () => {
   const handleDelete = async (index) => {
     try {
       const filteredArray = data.filter((item, i) => i !== index);
-      console.log(filteredArray);
+      // console.log(filteredArray);
 
       const quizRef = doc(db, "Users", user);
       await updateDoc(quizRef, {
@@ -69,18 +70,17 @@ const Index = () => {
         gap={5}
       >
         <Flex
-          mt={10}
-          boxShadow={"sm"}
-          _hover={{ boxShadow: "md" }}
           direction={"column"}
-          gap={5}
-          backgroundColor={"teal.100"}
-          rounded={"xl"}
-          py={4}
-          px={8}
-          alignItems={"center"}
           justifyContent={"center"}
+          alignItems={"center"}
+          p={10}
+          border={"1px solid black"}
+          borderRadius={"10px"}
+          my={5}
+          gap={7}
+          maxW={"5xl"}
           cursor={"pointer"}
+          _hover={{ backgroundColor: "gray.100", transitionDuration: "0.2s" }}
           onClick={(e) => {
             router.push("/createquiz/quiz");
           }}
@@ -107,19 +107,30 @@ const Index = () => {
             {data.map((quiz, index) => (
               <Flex
                 key={index}
-                m={8}
-                maxW={"5xl"}
-                boxShadow={"sm"}
-                _hover={{ boxShadow: "md" }}
                 direction={"column"}
-                gap={5}
-                backgroundColor={"teal.100"}
-                rounded={"xl"}
-                p={4}
+                justifyContent={"center"}
+                alignItems={"center"}
+                p={10}
+                border={"1px solid black"}
+                borderRadius={"10px"}
+                m={10}
+                gap={7}
+                maxW={"5xl"}
               >
                 <Heading textAlign={"center"} fontSize={"2xl"} as="h3">
                   {quiz.title}
                 </Heading>
+                <Flex gap={3}>
+                  <Badge fontSize={"sm"} colorScheme="purple">
+                    {" "}
+                    10 Minutes{" "}
+                  </Badge>
+                  <Badge fontSize={"sm"} colorScheme="yellow">
+                    {" "}
+                    2 Questions{" "}
+                  </Badge>
+                </Flex>
+
                 <Text textAlign={"center"} fontSize={"xl"} as={"p"}>
                   {quiz.description}
                 </Text>

@@ -41,7 +41,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
     update === true ? question.questionTitle : ""
   );
 
-  console.log("questionTitle", question.questionTitle);
+  // console.log("questionTitle", question.questionTitle);
   const [points, setPoints] = useState(update === true ? question.points : 1);
   const [answer, setAnswer] = useState(update === true ? question.answer : "");
   const [isRequired, setIsRequired] = useState(
@@ -155,7 +155,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
                 onClick={(e) => {
                   const updatedValues = [...inputs];
                   updatedValues.splice(index, 1);
-                  console.log("newValues", updatedValues);
+                  // console.log("newValues", updatedValues);
                   setInputs(updatedValues);
                 }}
               />

@@ -77,9 +77,9 @@ const NameModel = () => {
               onClick={async (e) => {
                 e.preventDefault();
                 const name = document.getElementById("user_name").value;
-                console.log(name);
+                // console.log(name);
                 const val = validateEmail(name);
-                console.log("val", val);
+                // console.log("val", val);
                 if (val === false) {
                   toast({
                     title: "Please enter a valid Email",

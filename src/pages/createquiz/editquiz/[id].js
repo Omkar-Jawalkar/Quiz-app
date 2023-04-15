@@ -19,7 +19,7 @@ const Index = () => {
   const [description, setDescription] = useState("");
   const [questions, setQuestions] = useState([]);
 
-  console.log("id", id);
+  // console.log("id", id);
   if ((id < 1 && id > data.length) || data.length === 0) {
     return <Error statusCode={404}></Error>;
   }

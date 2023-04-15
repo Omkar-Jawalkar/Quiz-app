@@ -40,48 +40,74 @@ const Index = () => {
         {" "}
         Attempt Quiz{" "}
       </Heading>
-      <Flex direction={"column"} flexWrap={"wrap"}>
-        {data.map((quiz, index) => {
-          return (
+      <>
+        {data.length === 0 ? (
+          <>
             <Flex
-              key={index}
               direction={"column"}
+              gap={5}
               justifyContent={"center"}
               alignItems={"center"}
-              p={10}
-              border={"1px solid black"}
-              borderRadius={"10px"}
-              m={10}
-              gap={7}
-              maxW={"5xl"}
+              h={"sm"}
             >
-              <Heading textAlign={"center"} fontSize={"2xl"}>
-                {" "}
-                {quiz.title} {"  "}
-                <Badge fontSize={"sm"} colorScheme="purple">
-                  {" "}
-                  10 Minutes{" "}
-                </Badge>
-              </Heading>
-              <Badge fontSize={"sm"} colorScheme="yellow">
-                {" "}
-                {quiz.questions.length} Questions{" "}
-              </Badge>
-              <Text display={{ sm: "flex" }}> {quiz.description} </Text>
+              <Text as={"h4"} fontSize={"lg"}>
+                No Quizes Found 🥺 Please Create one
+              </Text>
               <Button
-                bg={"green.400"}
+                backgroundColor={"blue.500"}
                 color={"white"}
-                onClick={() => {
-                  router.push(`/attemptquiz/${index + 1}`);
-                }}
+                onClick={() => router.push("/")}
               >
                 {" "}
-                Attempt{" "}
+                Go back and Create Quiz
               </Button>
             </Flex>
-          );
-        })}
-      </Flex>
+          </>
+        ) : (
+          <Flex direction={"column"} flexWrap={"wrap"}>
+            {data.map((quiz, index) => {
+              return (
+                <Flex
+                  key={index}
+                  direction={"column"}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  p={10}
+                  border={"1px solid black"}
+                  borderRadius={"10px"}
+                  m={10}
+                  gap={7}
+                  maxW={"5xl"}
+                >
+                  <Heading textAlign={"center"} fontSize={"2xl"}>
+                    {" "}
+                    {quiz.title} {"  "}
+                    <Badge fontSize={"sm"} colorScheme="purple">
+                      {" "}
+                      10 Minutes{" "}
+                    </Badge>
+                  </Heading>
+                  <Badge fontSize={"sm"} colorScheme="yellow">
+                    {" "}
+                    {quiz.questions.length} Questions{" "}
+                  </Badge>
+                  <Text display={{ sm: "flex" }}> {quiz.description} </Text>
+                  <Button
+                    bg={"green.400"}
+                    color={"white"}
+                    onClick={() => {
+                      router.push(`/attemptquiz/${index + 1}`);
+                    }}
+                  >
+                    {" "}
+                    Attempt{" "}
+                  </Button>
+                </Flex>
+              );
+            })}
+          </Flex>
+        )}
+      </>
       {/* <MyAlertBox
         timer={20}
         onOpen={onOpen}
