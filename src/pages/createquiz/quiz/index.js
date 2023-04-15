@@ -20,12 +20,23 @@ const Index = () => {
       inputs: [""],
     },
   ]);
+  const [timerState, setTimerState] = useState(5);
 
   return (
     <Container maxW={"container.md"}>
-      <QuizHead setTitle={setTitle} setDescription={setDescription} />
+      <QuizHead
+        timerState={timerState}
+        setTimerState={setTimerState}
+        setTitle={setTitle}
+        setDescription={setDescription}
+      />
       <QuizBody questions={questions} setQuestions={setQuestions} />
-      <QuizFoot questions={questions} title={title} description={description} />
+      <QuizFoot
+        timerState={timerState}
+        questions={questions}
+        title={title}
+        description={description}
+      />
     </Container>
   );
 };

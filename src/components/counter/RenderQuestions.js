@@ -27,6 +27,9 @@ const RenderQuestions = ({
     renderData.questions[currentQuestion]
   );
 
+  // Timer State
+
+
   // Correct Answer points State
 
   // const [correctAnswerPointsTotal, setCorrectAnswerPointsTotal] = useState(0);

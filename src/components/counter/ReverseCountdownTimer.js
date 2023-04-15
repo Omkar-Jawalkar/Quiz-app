@@ -27,7 +27,7 @@ const ReverseCountdownTimer = ({ minutes }) => {
 
   if (countdown <= 0) {
     // Push to successfully Submitted Quiz Page
-    router.push("/attemptquiz");
+    router.push("/result");
   }
 
   return (

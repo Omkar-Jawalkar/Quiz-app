@@ -123,11 +123,11 @@ const Index = () => {
                 <Flex gap={3}>
                   <Badge fontSize={"sm"} colorScheme="purple">
                     {" "}
-                    10 Minutes{" "}
+                    {quiz.timer} Minutes{" "}
                   </Badge>
                   <Badge fontSize={"sm"} colorScheme="yellow">
                     {" "}
-                    2 Questions{" "}
+                    {quiz.questions.length} Questions{" "}
                   </Badge>
                 </Flex>
 

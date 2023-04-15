@@ -84,7 +84,7 @@ const Index = () => {
                     {quiz.title} {"  "}
                     <Badge fontSize={"sm"} colorScheme="purple">
                       {" "}
-                      10 Minutes{" "}
+                      {quiz.timer} Minutes{" "}
                     </Badge>
                   </Heading>
                   <Badge fontSize={"sm"} colorScheme="yellow">

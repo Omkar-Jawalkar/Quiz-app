@@ -18,20 +18,37 @@ const Index = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [questions, setQuestions] = useState([]);
+  const [timerState, setTimerState] = useState(0);
 
-  // console.log("id", id);
-  if ((id < 1 && id > data.length) || data.length === 0) {
-    return <Error statusCode={404}></Error>;
-  }
+  useEffect(() => {
+    if ((id < 1 && id > data.length) || data.length === 0) {
+      return <Error statusCode={404}></Error>;
+    }
 
-  const mydata = data[id - 1];
-  if (mydata === undefined) {
-    return <Error statusCode={404}></Error>;
-  }
+    const mydata = data[id - 1];
+    if (mydata === undefined) {
+      return <Error statusCode={404}></Error>;
+    }
 
-  setTitle(mydata.title);
-  setDescription(mydata.description);
-  setQuestions(mydata.questions);
+    setTitle(mydata.title);
+    setDescription(mydata.description);
+    setQuestions(mydata.questions);
+    setTimerState(mydata.timer);
+  }, [id, data]);
+
+  // if ((id < 1 && id > data.length) || data.length === 0) {
+  //   return <Error statusCode={404}></Error>;
+  // }
+
+  // const mydata = data[id - 1];
+  // if (mydata === undefined) {
+  //   return <Error statusCode={404}></Error>;
+  // }
+
+  // setTitle(mydata.title);
+  // setDescription(mydata.description);
+  // setQuestions(mydata.questions);
+  // setTimerState(mydata.timer);
 
   // useEffect(() => {
   //   console.log("questions", questions);
@@ -40,6 +57,8 @@ const Index = () => {
   return (
     <Container maxW={"container.md"}>
       <QuizHead
+        setTimerState={setTimerState}
+        timerState={timerState}
         title={title}
         description={description}
         update={true}
@@ -52,6 +71,7 @@ const Index = () => {
         setQuestions={setQuestions}
       />
       <QuizFoot
+        timerState={timerState}
         update={true}
         questions={questions}
         title={title}

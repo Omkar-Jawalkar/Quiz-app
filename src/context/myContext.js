@@ -9,6 +9,7 @@ const MyContextProvider = ({ children }) => {
     title: "",
     description: "",
     questions: [],
+    timer: 0,
   });
   const [user, setUser] = useState("");
 

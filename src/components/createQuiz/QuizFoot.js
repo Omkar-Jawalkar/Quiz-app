@@ -11,7 +11,14 @@ import { app } from "@/services/firebase";
 
 import { doc, updateDoc } from "firebase/firestore";
 
-const QuizFoot = ({ id, update = false, questions, title, description }) => {
+const QuizFoot = ({
+  timerState,
+  id,
+  update = false,
+  questions,
+  title,
+  description,
+}) => {
   // Database Object
   const db = getFirestore(app);
 
@@ -32,7 +39,12 @@ const QuizFoot = ({ id, update = false, questions, title, description }) => {
           });
           setData([...data, quiz]);
           if (update === false) {
-            setQuiz({ title: "", description: "", questions: [] });
+            setQuiz({
+              timer: 0,
+              title: "",
+              description: "",
+              questions: [],
+            });
           }
         } catch (err) {
           // console.log(err);
@@ -57,7 +69,7 @@ const QuizFoot = ({ id, update = false, questions, title, description }) => {
           });
           setData(normalData);
           if (update === false) {
-            setQuiz({ title: "", description: "", questions: [] });
+            setQuiz({ timer: 0, title: "", description: "", questions: [] });
           }
         } catch (err) {
           toast({
@@ -83,6 +95,15 @@ const QuizFoot = ({ id, update = false, questions, title, description }) => {
     if (title === null) {
       toast({
         title: "Please add a title",
+        status: "warning",
+        isClosable: true,
+        duration: 3000,
+      });
+      return;
+    }
+    if (timerState === 0) {
+      toast({
+        title: "Please add a timer",
         status: "warning",
         isClosable: true,
         duration: 3000,
@@ -152,6 +173,7 @@ const QuizFoot = ({ id, update = false, questions, title, description }) => {
       title: title,
       description: description,
       questions: questions,
+      timer: timerState,
     });
     toast({
       title: `Quiz added Successfully!!🎉`,
@@ -176,7 +198,7 @@ const QuizFoot = ({ id, update = false, questions, title, description }) => {
         onClick={(e) => {
           e.preventDefault();
           if (update === true) {
-            setQuiz({ title: "", description: "", questions: [] });
+            setQuiz({ timer: 0, title: "", description: "", questions: [] });
           }
           router.push("/createquiz");
         }}

@@ -27,8 +27,6 @@ const ShowQuiz = () => {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
-  
-
   if (!renderData) return <div>Loading...</div>;
 
   return (
@@ -48,11 +46,10 @@ const ShowQuiz = () => {
         alignItems={{ base: "center", lg: "flex-start" }}
       >
         <Heading fontSize={"4xl"}> {renderData.title} </Heading>
-        <ReverseCountdownTimer minutes={1} />
+        <ReverseCountdownTimer minutes={renderData.timer} />
       </Flex>
       <Flex justifyContent={"center"} alignItems={"center"} w={"100%"}>
         <RenderQuestions
-    
           renderData={renderData}
           currentQuestion={currentQuestion}
           setCurrentQuestion={setCurrentQuestion}
@@ -61,7 +58,13 @@ const ShowQuiz = () => {
       </Flex>
 
       <Flex m={4} justifyContent={"center"} alignItems={"center"}>
-        <Button color="white" backgroundColor={"red.400"}>
+        <Button
+          onClick={() => {
+            router.push("/attemptquiz");
+          }}
+          color="white"
+          backgroundColor={"red.400"}
+        >
           End Quiz
         </Button>
       </Flex>
