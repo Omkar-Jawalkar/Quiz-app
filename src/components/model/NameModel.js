@@ -67,7 +67,7 @@ const NameModel = () => {
               autoComplete="off"
               id="user_name"
               ref={initialRef}
-              placeholder="First name"
+              placeholder="Email"
             />
           </Flex>
         </ModalBody>
