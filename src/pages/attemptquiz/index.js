@@ -54,14 +54,14 @@ const Index = () => {
               <Text as={"h4"} fontSize={"lg"}>
                 No Quizes Found 🥺 Please Create one
               </Text>
-              <Button
+              {/* <Button
                 backgroundColor={"blue.500"}
                 color={"white"}
                 onClick={() => router.push("/")}
               >
                 {" "}
                 Go back and Create Quiz
-              </Button>
+              </Button> */}
             </Flex>
           </>
         ) : (
@@ -109,6 +109,16 @@ const Index = () => {
             })}
           </Flex>
         )}
+        <Button
+          my={4}
+          onClick={() => {
+            router.push("/");
+          }}
+          bgColor={"blue.400"}
+          color={"white"}
+        >
+          {data.length === 0 ? "Go Back and Create Quiz" : "Back"}
+        </Button>
       </>
       {/* <MyAlertBox
         timer={20}

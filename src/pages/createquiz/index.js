@@ -98,7 +98,12 @@ const Index = () => {
 
         {data.length === 0 ? (
           <Flex minH={"30px"} justifyContent={"center"} alignItems={"center"}>
-            <Heading textAlign={"center"} fontSize={"xl"} as={"h4"}>
+            <Heading
+              color={"white"}
+              textAlign={"center"}
+              fontSize={"xl"}
+              as={"h4"}
+            >
               No Quizes found, Please create one 🙋‍♂️
             </Heading>
           </Flex>
@@ -168,6 +173,17 @@ const Index = () => {
             ))}
           </Flex>
         )}
+
+        <Button
+          my={4}
+          onClick={() => {
+            router.push("/");
+          }}
+          bgColor={"blue.400"}
+          color={"white"}
+        >
+          Back
+        </Button>
       </Flex>
     </>
   );

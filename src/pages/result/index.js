@@ -40,31 +40,40 @@ const Index = () => {
         boxShadow={"md"}
         rounded={"2xl"}
         gap={5}
-        alignItems={"center"}
-        justifyContent={{ base: "center", md: "space-around" }}
+        alignItems={{ lg: "center" }}
+        justifyContent={{ base: "space-evenly", md: "space-around" }}
         direction={{ base: "column", lg: "row" }}
       >
         <Flex justifyContent={"center"} gap={4} alignItems={"center"}>
-          <Icon as={GrDocumentText} fontSize={"5xl"} />
-          <Text as={"h4"} fontSize={"2xl"}>
+          <Icon as={GrDocumentText} fontSize={{ base: "3xl", lg: "5xl" }} />
+          <Text as={"h4"} fontSize={{ base: "xl", lg: "2xl" }}>
             {finalResult.totalQuestionsCount} Questions
           </Text>
         </Flex>
         <Flex justifyContent={"center"} gap={4} alignItems={"center"}>
-          <Icon as={GiPodiumWinner} fontSize={"5xl"} />
-          <Text as={"h4"} fontSize={"2xl"}>
+          <Icon as={GiPodiumWinner} fontSize={{ base: "4xl", lg: "5xl" }} />
+          <Text as={"h4"} fontSize={{ base: "md", lg: "2xl" }}>
             {finalResult.pointsScored} Points Scored
-            <Text as={"h4"} fontSize={"lg"}>
+            <Text as={"h4"} fontSize={{ base: "md", lg: "2xl" }}>
               out of {finalResult.totalPoints} Points
             </Text>
           </Text>
         </Flex>
-        <Flex justifyContent={"center"} gap={4} alignItems={"center"}>
+        <Flex
+          pr={{ base: 4 }}
+          justifyContent={"center"}
+          gap={4}
+          alignItems={"center"}
+        >
           {finalResult.pointsScored > parseInt(finalResult.totalPoints / 2) ? (
             <>
               {/* For Passed */}
-              <Icon color={"green.300"} as={AiOutlineCrown} fontSize={"4xl"} />
-              <Text as={"h4"} fontSize={"2xl"}>
+              <Icon
+                color={"green.300"}
+                as={AiOutlineCrown}
+                fontSize={{ base: "4xl", lg: "5xl" }}
+              />
+              <Text as={"h4"} fontSize={{ base: "xl", lg: "2xl" }}>
                 Passed 🏆
               </Text>
             </>
@@ -72,8 +81,12 @@ const Index = () => {
             <>
               {/* For Failed */}
 
-              <Icon color={"red.500"} as={RxCrossCircled} fontSize={"5xl"} />
-              <Text as={"h4"} fontSize={"2xl"}>
+              <Icon
+                color={"red.500"}
+                as={RxCrossCircled}
+                fontSize={{ base: "4xl", lg: "5xl" }}
+              />
+              <Text as={"h4"} fontSize={{ base: "xl", lg: "2xl" }}>
                 Failed 😵
               </Text>
             </>

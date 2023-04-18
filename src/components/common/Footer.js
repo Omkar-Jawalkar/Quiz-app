@@ -1,5 +1,11 @@
 import React from "react";
 import { Flex, Heading } from "@chakra-ui/react";
+import NextLink from "next/link";
+import { Link } from "@chakra-ui/react";
+
+<Link as={NextLink} href="/home">
+  Home
+</Link>;
 
 const Footer = () => {
   return (
@@ -14,7 +20,10 @@ const Footer = () => {
       alignItems={"center"}
     >
       <Heading fontWeight={"bold"} fontSize={"xl"} as={"h4"}>
-        Made with ❤️ by Omkar
+        Made with ❤️ by{" "}
+        <Link as={NextLink} isExternal href="https://github.com/Omkar-Jawalkar">
+          @Omkar
+        </Link>
       </Heading>
     </Flex>
   );
