@@ -9,11 +9,12 @@ import { Flex } from "@chakra-ui/react";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { MyContextProvider } from "@/context/myContext";
+import CustomTheme from "@/theme/CustomTheme";
 
 export default function App({ Component, pageProps }) {
   return (
-    <ChakraProvider>
-      <main className={roboto.className}>
+    <ChakraProvider theme={CustomTheme}>
+      <main style={{ backgroundColor: "#101820" }} className={roboto.className}>
         <Flex direction={"column"} minH={"100vh"}>
           <MyContextProvider>
             <Navbar />

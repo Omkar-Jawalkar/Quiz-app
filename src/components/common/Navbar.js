@@ -39,17 +39,22 @@ const Navbar = () => {
       <Flex
         direction={"row"}
         justifyContent={"space-between"}
+        alignItems={"center"}
         boxShadow={"md"}
-        p={6}
-        bgGradient={"linear(to-b, #0dc6b4,#21c68a)"}
+        py={3}
+        px={6}
+        bgColor={"#FEEA2E"}
+        color={"#101820"}
+        // bgGradient={"linear(to-b, #0dc6b4,#21c68a)"}
       >
         <Heading
+          textAlign={"center"}
           cursor={"pointer"}
+          fontSize={"3xl"}
           onClick={(e) => {
             e.preventDefault();
             router.push("/");
           }}
-          as={"h2"}
         >
           Quiz App
         </Heading>
@@ -63,7 +68,7 @@ const Navbar = () => {
               onOpen();
             }}
           >
-            Hello, {user}
+            Hello {"," + user}
           </Text>
           <Image
             style={{

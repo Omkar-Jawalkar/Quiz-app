@@ -75,6 +75,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
   };
   return (
     <Flex
+      border={"1px solid #FEEE5B"}
       gap={7}
       direction={"column"}
       p={4}
@@ -92,6 +93,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
         {" "}
         {/* this is question */}
         <Input
+          _placeholder={{ color: "gray.400" }}
           maxW={"lg"}
           variant={"flushed"}
           size={"md"}
@@ -108,6 +110,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
             Points
           </Text>
           <NumberInput
+            _placeholder={{ color: "gray.400" }}
             // Handled the points
             onChange={(e) => {
               setPoints(e);
@@ -137,6 +140,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
             >
               <BiRadioCircle cursor={"pointer"} />
               <Input
+                _placeholder={{ color: "gray.400" }}
                 maxW={"xs"}
                 variant={"flushed"}
                 placeholder={"option"}

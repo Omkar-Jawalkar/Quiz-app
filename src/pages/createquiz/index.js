@@ -73,14 +73,19 @@ const Index = () => {
           direction={"column"}
           justifyContent={"center"}
           alignItems={"center"}
+          color={"#FEEE5B"}
           p={10}
-          border={"1px solid black"}
+          border={"1px solid #FEEE5B"}
           borderRadius={"10px"}
           my={5}
           gap={7}
           maxW={"5xl"}
           cursor={"pointer"}
-          _hover={{ backgroundColor: "gray.100", transitionDuration: "0.2s" }}
+          _hover={{
+            backgroundColor: "#FEEE5B",
+            color: "#101820",
+            transitionDuration: "0.3s",
+          }}
           onClick={(e) => {
             router.push("/createquiz/quiz");
           }}
@@ -106,12 +111,14 @@ const Index = () => {
           >
             {data.map((quiz, index) => (
               <Flex
+                // bgColor={"#FEEE5B"}
+                border={"1px solid #FEEE5B"}
+                color={"white"}
                 key={index}
                 direction={"column"}
                 justifyContent={"center"}
                 alignItems={"center"}
                 p={10}
-                border={"1px solid black"}
                 borderRadius={"10px"}
                 m={10}
                 gap={7}
@@ -139,14 +146,14 @@ const Index = () => {
                     onClick={(e) => {
                       router.push(`/createquiz/editquiz/${index + 1}`);
                     }}
-                    color={"whiteAlpha.900"}
+                    color={"white"}
                     backgroundColor={"blue.400"}
                   >
                     {" "}
                     Edit Quiz{" "}
                   </Button>
                   <Button
-                    color={"whiteAlpha.900"}
+                    color={"white"}
                     onClick={(e) => {
                       // handle Delete
                       handleDelete(index);

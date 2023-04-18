@@ -27,7 +27,7 @@ const Index = () => {
       justifyContent={"center"}
       gap={10}
     >
-      <Heading as={"h2"} fontSize={"4xl"}>
+      <Heading color={"white"} as={"h2"} fontSize={"4xl"}>
         Results
       </Heading>
 

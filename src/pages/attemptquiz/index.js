@@ -34,6 +34,7 @@ const Index = () => {
       direction={"column"}
       justifyContent={"flex-start"}
       alignItems={"center"}
+      color={"white"}
     >
       {" "}
       <Heading py={10} fontSize={"4xl"}>
@@ -68,12 +69,13 @@ const Index = () => {
             {data.map((quiz, index) => {
               return (
                 <Flex
+                  border={"1px solid #FEEE5B"}
+                  color={"white"}
                   key={index}
                   direction={"column"}
                   justifyContent={"center"}
                   alignItems={"center"}
                   p={10}
-                  border={"1px solid black"}
                   borderRadius={"10px"}
                   m={10}
                   gap={7}

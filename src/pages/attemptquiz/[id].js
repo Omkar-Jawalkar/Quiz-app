@@ -37,6 +37,7 @@ const ShowQuiz = () => {
       alignItems={"center"}
       gap={10}
       direction={"column"}
+      color={"white"}
     >
       <Flex
         direction={{ base: "column", lg: "row" }}

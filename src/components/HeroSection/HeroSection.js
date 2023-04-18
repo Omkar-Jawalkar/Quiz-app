@@ -12,13 +12,16 @@ const HeroSection = () => {
     <Flex
       direction={{ base: "column", lg: "row" }}
       mx={2}
-      minH={"75vh"}
+      h={"100vh"}
       justifyContent={"center"}
       alignItems={"center"}
+      mt={{ base: 6, lg: 0 }}
     >
       {/* This is for create Quiz */}
       <Flex
-        backgroundColor={"teal.50"}
+        // backgroundColor={"teal.50"}
+        bgColor={"#FEEE5B"}
+        color={"#101820"}
         m={3}
         direction={"column"}
         gap={6}
@@ -36,17 +39,18 @@ const HeroSection = () => {
         <Divider />
         <Button
           color={"white"}
+          backgroundColor={"#101820"}
           onClick={(e) => {
             handlePush(e, "/createquiz");
           }}
-          backgroundColor={"green.400"}
+          // backgroundColor={"green.400"}
         >
           Create Quiz
         </Button>
       </Flex>
       {/* This is for take Quiz */}
       <Flex
-        backgroundColor={"teal.50"}
+        backgroundColor={"#FEEE5B"}
         m={3}
         direction={"column"}
         gap={6}
@@ -68,7 +72,7 @@ const HeroSection = () => {
             handlePush(e, "/attemptquiz");
           }}
           color={"white"}
-          backgroundColor={"green.400"}
+          backgroundColor={"#101820"}
         >
           Attempt Quiz
         </Button>

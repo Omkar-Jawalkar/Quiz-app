@@ -7,7 +7,9 @@ const Footer = () => {
       marginTop={"auto"}
       boxShadow={"md"}
       p={6}
-      bgGradient={"linear(to-t, #0dc6b4,#21c68a)"}
+      bgColor={"#FEEA2E"}
+      color={"#101820"}
+      // bgGradient={"linear(to-t, #0dc6b4,#21c68a)"}
       justifyContent={"center"}
       alignItems={"center"}
     >

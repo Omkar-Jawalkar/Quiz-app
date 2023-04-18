@@ -23,7 +23,7 @@ const Index = () => {
   const [timerState, setTimerState] = useState(5);
 
   return (
-    <Container maxW={"container.md"}>
+    <Container color={"white"} maxW={"container.md"}>
       <QuizHead
         timerState={timerState}
         setTimerState={setTimerState}
