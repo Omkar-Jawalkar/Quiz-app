@@ -56,7 +56,7 @@ const Navbar = () => {
             router.push("/");
           }}
         >
-          Quiz App
+          Quizzup
         </Heading>
         <Flex justifyContent={"center"} alignItems={"center"} gap={6}>
           <Text
