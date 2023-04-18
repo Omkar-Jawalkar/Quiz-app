@@ -1,18 +1,38 @@
 import React from "react";
 import {
   Flex,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
+  Input,
   Badge,
   Button,
   Heading,
   Text,
   useDisclosure,
+  Icon,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Divider,
+  useToast,
+  InputRightAddon,
+  Toast,
 } from "@chakra-ui/react";
+import { AiOutlineLink } from "react-icons/ai";
 import MyAlertBox from "@/components/AlertBox/AlertBox";
-
+import { BiShareAlt } from "react-icons/bi";
 import { MyContext } from "@/context/myContext";
 import { useContext } from "react";
 import { useRouter } from "next/router";
 const Index = () => {
+  // Toast
+  const toast = useToast();
+
   //  This is Router
 
   const router = useRouter();
@@ -26,7 +46,13 @@ const Index = () => {
 
   //This is Context
 
-  const { data } = useContext(MyContext);
+  const { data, user } = useContext(MyContext);
+
+  // This are for sharing model
+  const [sharableLink, setSharableLink] = React.useState(
+    "https://quiz-app-ashen.vercel.app/"
+  );
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Flex
@@ -94,16 +120,34 @@ const Index = () => {
                     {quiz.questions.length} Questions{" "}
                   </Badge>
                   <Text display={{ sm: "flex" }}> {quiz.description} </Text>
-                  <Button
-                    bg={"green.400"}
-                    color={"white"}
-                    onClick={() => {
-                      router.push(`/attemptquiz/${index + 1}`);
-                    }}
-                  >
-                    {" "}
-                    Attempt{" "}
-                  </Button>
+                  <Flex gap={4} justifyContent={"center"} alignItems={"center"}>
+                    <Button
+                      bg={"green.400"}
+                      color={"white"}
+                      onClick={() => {
+                        router.push(`/attemptquiz/${index + 1}`);
+                      }}
+                    >
+                      {" "}
+                      Attempt{" "}
+                    </Button>
+                    <Button
+                      bg={"blue.400"}
+                      color={"white"}
+                      onClick={() => {
+                        onOpen();
+                        const _ = quiz.title.replaceAll(" ", "-");
+                        setSharableLink(
+                          `https://quiz-app-omkar.vercel.app/${user}/${
+                            index + 1
+                          }/${_}`
+                        );
+                      }}
+                    >
+                      {" "}
+                      Share <Icon pl={2} fontSize={"3xl"} as={BiShareAlt} />
+                    </Button>
+                  </Flex>
                 </Flex>
               );
             })}
@@ -120,11 +164,51 @@ const Index = () => {
           {data.length === 0 ? "Go Back and Create Quiz" : "Back"}
         </Button>
       </>
+      {/* This is model to be opened to share link */}
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Share Quiz</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <InputGroup>
+              <Input
+                contentEditable={false}
+                value={sharableLink}
+                type="text"
+                placeholder="Share Link"
+              />
+              <InputRightAddon
+                // pointerEvents="none"
+                onClick={() => {
+                  // This should copy the link to clipboard
+                  navigator.clipboard.writeText(sharableLink);
+                  toast({
+                    title: "Link Copied",
+                    duration: 1000,
+                    isClosable: true,
+                    status: "info",
+                  });
+                }}
+                cursor={"pointer"}
+                children={
+                  <Icon as={AiOutlineLink} fontSize={"2xl"} color="gray.700" />
+                }
+              />
+            </InputGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
       {/* <MyAlertBox
         timer={20}
         onOpen={onOpen}
         isOpen={isOpen}
-        id={sendingIndex}
+        id={sendingIndex} 
         onClose={onClose}
       /> */}
     </Flex>
