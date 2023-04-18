@@ -10,10 +10,14 @@ import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { MyContextProvider } from "@/context/myContext";
 import CustomTheme from "@/theme/CustomTheme";
+import Head from "next/head";
 
 export default function App({ Component, pageProps }) {
   return (
     <ChakraProvider theme={CustomTheme}>
+      <Head>
+        <title>Quiz App</title>
+      </Head>
       <main style={{ backgroundColor: "#101820" }} className={roboto.className}>
         <Flex direction={"column"} minH={"100vh"}>
           <MyContextProvider>

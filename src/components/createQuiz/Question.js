@@ -111,6 +111,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
             Points
           </Text>
           <NumberInput
+            color={"white"}
             w={{ base: "60px", md: "80px" }}
             _placeholder={{ color: "gray.400" }}
             // Handled the points
@@ -124,8 +125,8 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
           >
             <NumberInputField />
             <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
+              <NumberIncrementStepper color={"white"} />
+              <NumberDecrementStepper color={"white"} />
             </NumberInputStepper>
           </NumberInput>{" "}
         </Flex>
