@@ -11,11 +11,11 @@ const HeroSection = () => {
   return (
     <Flex
       direction={{ base: "column", lg: "row" }}
-      mx={2}
-      h={"100vh"}
+      h={{ base: "auto", lg: "100vh" }}
       justifyContent={"center"}
       alignItems={"center"}
-      mt={{ base: 6, lg: 0 }}
+      my={{ base: 24, lg: 0 }}
+      mx={{ base: 9, lg: 24 }}
     >
       {/* This is for create Quiz */}
       <Flex
