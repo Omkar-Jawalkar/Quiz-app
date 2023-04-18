@@ -1,6 +1,7 @@
 import HeroSection from "@/components/HeroSection/HeroSection";
 import React from "react";
 import { MyContext } from "@/context/myContext";
+import { Box } from "@chakra-ui/react";
 import { useContext, useEffect } from "react";
 import NameModel from "@/components/model/NameModel";
 export default function Home() {

@@ -96,7 +96,7 @@ const NameModel = () => {
                       { merge: true }
                     );
                     toast({
-                      title: " DONEONE 🎉 ",
+                      title: " Success Login 🎉 ",
                       status: "success",
                       duration: 3000,
                       isClosable: true,
