@@ -43,8 +43,8 @@ const Navbar = () => {
         boxShadow={"md"}
         py={3}
         px={6}
-        bgColor={"#FEEA2E"}
-        color={"#101820"}
+        bgColor={"#101820"}
+        color={"#FEEA2E"}
         // bgGradient={"linear(to-b, #0dc6b4,#21c68a)"}
       >
         <Heading
@@ -63,12 +63,12 @@ const Navbar = () => {
             cursor={"pointer"}
             fontSize={"xl"}
             display={{ base: "none", md: "inline" }}
-            as={"h4"}
+            as="samp"
             onClick={(e) => {
               onOpen();
             }}
           >
-            Hello {"," + user}
+            Hello {", " + user}
           </Text>
           <Image
             style={{
