@@ -55,7 +55,7 @@ const Index = () => {
   // }, [questions]);
 
   return (
-    <Container maxW={"container.md"}>
+    <Container color={"white"} maxW={"container.md"}>
       <QuizHead
         setTimerState={setTimerState}
         timerState={timerState}

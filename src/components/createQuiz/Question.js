@@ -34,6 +34,7 @@ import { MdDelete } from "react-icons/md";
 const Question = ({ update, question, index, questions, setQuestions }) => {
   // this is for popover
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const initRef = React.useRef();
   const [inputs, setInputs] = useState(
     update === true ? question.inputs : [""]
   );
@@ -110,6 +111,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
             Points
           </Text>
           <NumberInput
+            w={{ base: "60px", md: "80px" }}
             _placeholder={{ color: "gray.400" }}
             // Handled the points
             onChange={(e) => {
@@ -188,7 +190,7 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
             Add Inputs
           </Text>
 
-          <Popover isLazy>
+          <Popover initialFocusRef={initRef} isLazy>
             <PopoverTrigger>
               <Button
                 size={"sm"}
@@ -199,21 +201,23 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
               </Button>
             </PopoverTrigger>
             <PopoverContent fontSize={"sm"}>
-              <PopoverHeader fontWeight="semibold">
+              <PopoverHeader color={"black"} fontWeight="semibold">
                 Select an Answer to this Question
               </PopoverHeader>
               <PopoverArrow />
               <PopoverCloseButton />
               <PopoverBody>
                 {/* This is to select the answer */}
-                <Flex direction={"column"} gap={2}>
+                <Flex color={"black"} direction={"column"} gap={2}>
                   {inputs.map((text, index) => (
                     <>
                       {text !== "option NaN" ? (
                         <Button
+                          backgroundColor={
+                            answer === text ? "green.400" : "yellow.400"
+                          }
                           onClick={(e) => {
                             setAnswer(text);
-                            onClose();
                           }}
                         >
                           {text}
@@ -224,6 +228,9 @@ const Question = ({ update, question, index, questions, setQuestions }) => {
                     </>
                   ))}
                 </Flex>
+                {/* <Text ref={initRef} color={"blue.400"} onClick={onClose}>
+                  ccc
+                </Text> */}
               </PopoverBody>
             </PopoverContent>
           </Popover>

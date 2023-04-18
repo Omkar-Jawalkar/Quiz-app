@@ -29,7 +29,6 @@ const RenderQuestions = ({
 
   // Timer State
 
-
   // Correct Answer points State
 
   // const [correctAnswerPointsTotal, setCorrectAnswerPointsTotal] = useState(0);
@@ -142,12 +141,22 @@ const RenderQuestions = ({
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <Text flex={6} fontSize={{ base: "sm", lg: "lg" }} as={"p"}>
-          {questionsToDisplay.questionTitle}
-        </Text>
-        <Text flex={1} whiteSpace={"nowrap"} fontSize="sm" color="grey">
-          <Badge color={"purple"}> {questionsToDisplay.points} Points </Badge>
-        </Text>
+        <Flex>
+          <Text flex={6} fontSize={{ base: "sm", lg: "lg" }} as={"p"}>
+            {questionsToDisplay.questionTitle}
+          </Text>
+          {questionsToDisplay.isRequired && (
+            <Text fontSize={"2xl"} as="p" color={"red.400"}>
+              {" "}
+              *
+            </Text>
+          )}
+        </Flex>
+        <Flex>
+          <Text flex={1} whiteSpace={"nowrap"} fontSize="sm" color="grey">
+            <Badge color={"purple"}> {questionsToDisplay.points} Points </Badge>
+          </Text>
+        </Flex>
       </Flex>
 
       <Divider my={4} />
