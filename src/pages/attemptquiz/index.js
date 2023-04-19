@@ -137,10 +137,14 @@ const Index = () => {
                       onClick={() => {
                         onOpen();
                         const _ = quiz.title.replaceAll(" ", "-");
+                        const combineEmailAndIndex =
+                          user + "_" + (index + 1).toString();
+
+                        setSharableLink(btoa(combineEmailAndIndex));
                         setSharableLink(
-                          `https://quiz-app-omkar.vercel.app/${user}/${
-                            index + 1
-                          }/${_}`
+                          `http://localhost:3000/shared/${btoa(
+                            combineEmailAndIndex
+                          )}/${_}`
                         );
                       }}
                     >
