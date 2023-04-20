@@ -110,15 +110,25 @@ const Index = () => {
                   <Heading textAlign={"center"} fontSize={"2xl"}>
                     {" "}
                     {quiz.title} {"  "}
+                    {/* <Badge fontSize={"sm"} colorScheme="purple">
+                      {" "}
+                      {quiz.timer} Minutes{" "}
+                    </Badge> */}
+                  </Heading>
+                  <Flex gap={4}>
                     <Badge fontSize={"sm"} colorScheme="purple">
                       {" "}
                       {quiz.timer} Minutes{" "}
                     </Badge>
-                  </Heading>
-                  <Badge fontSize={"sm"} colorScheme="yellow">
+                    <Badge fontSize={"sm"} colorScheme="yellow">
+                      {" "}
+                      {quiz.questions.length} Questions{" "}
+                    </Badge>
+                  </Flex>
+                  {/* <Badge fontSize={"sm"} colorScheme="yellow">
                     {" "}
                     {quiz.questions.length} Questions{" "}
-                  </Badge>
+                  </Badge> */}
                   <Text display={{ sm: "flex" }}> {quiz.description} </Text>
                   <Flex gap={4} justifyContent={"center"} alignItems={"center"}>
                     <Button
@@ -195,10 +205,9 @@ const Index = () => {
                   });
                 }}
                 cursor={"pointer"}
-                children={
-                  <Icon as={AiOutlineLink} fontSize={"2xl"} color="gray.700" />
-                }
-              />
+              >
+                <Icon as={AiOutlineLink} fontSize={"2xl"} color="gray.700" />
+              </InputRightAddon>
             </InputGroup>
           </ModalBody>
           <ModalFooter>
