@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Box, Text } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
-const ReverseCountdownTimer = ({ minutes }) => {
+const ReverseCountdownTimer = ({ router, minutes }) => {
   const [countdown, setCountdown] = useState(minutes * 60); // convert minutes to seconds
 
   // importing router
-
-  const router = useRouter();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,7 +24,7 @@ const ReverseCountdownTimer = ({ minutes }) => {
 
   if (countdown <= 0) {
     // Push to successfully Submitted Quiz Page
-    router.push("/result");
+    // router.push("/result");
   }
 
   return (
