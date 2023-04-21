@@ -152,9 +152,9 @@ const Index = ({ user, title }) => {
             </Flex>
           )}
           <Flex gap={4} direction={"column"}>
-            <Text as="p" fontSize={"xl"}>
+            <Text textAlign={"center"} as="p" fontSize={"xl"}>
               {" "}
-              Name should be more than 6 characters
+              Name should be more than 3 characters
             </Text>
             <Input
               onChange={(e) => {
@@ -173,7 +173,7 @@ const Index = ({ user, title }) => {
             onClick={() => {
               setStartQuiz(true);
             }}
-            isDisabled={playerName.length > 6 ? false : true}
+            isDisabled={playerName.length > 3 ? false : true}
           >
             Start
           </Button>
