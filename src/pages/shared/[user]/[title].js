@@ -36,12 +36,20 @@ const Index = ({ user, title }) => {
     if (router && router.query) {
       // console.log(router.query);
       if (router.query.user && router.query.title) {
+        let email = "";
+        let number = 0;
         const combineUserAndId = atob(router.query.user);
-        const emailRegex = /[^_]+@[^_]+\.[a-z]+/;
-        const numberRegex = /\d+/;
+        for (let i = combineUserAndId.length - 1; i >= 0; i--) {
+          // If the current character is an underscore, split the string at that position
+          if (combineUserAndId[i] === "_") {
+            email = combineUserAndId.substring(0, i);
+            number = parseInt(combineUserAndId.substring(i + 1));
+            break; // exit the loop once the underscore is found
+          }
+        }
 
-        const email = combineUserAndId.match(emailRegex)[0];
-        const number = combineUserAndId.match(numberRegex)[0];
+        // const email = combineUserAndId.match(emailRegex)[0];
+        // const number = combineUserAndId.match(numberRegex)[0];
         setParam([email, number]);
       }
     }
@@ -67,12 +75,15 @@ const Index = ({ user, title }) => {
           // Length property not working fix this
           // setData(docSnap.data.data);
           // docSnap.data() will be undefined in this case
+          // console.log("yoyo", param[1] - 1);
+          // console.log("dataArray", dataArray[param[1] - 1]);
           setShowData(dataArray);
         }
       }
     };
 
     getData();
+    console.log("param", param);
   }, [param]);
 
   // Set Render Question
@@ -80,8 +91,12 @@ const Index = ({ user, title }) => {
     if (showData.length > 0) {
       setRenderData(showData[param[1] - 1]);
     }
-    console.log("showData", showData);
   }, [showData]);
+
+  useEffect(() => {
+    console.log("renderData", renderData);
+    console.log("renderData2", showData);
+  }, [renderData]);
 
   return (
     <>

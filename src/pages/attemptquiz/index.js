@@ -152,7 +152,7 @@ const Index = () => {
 
                         setSharableLink(btoa(combineEmailAndIndex));
                         setSharableLink(
-                          `https://quiz-app-omkar.vercel.app/shared/${btoa(
+                          `https://quiz-app-omkar.vercel.app/${btoa(
                             combineEmailAndIndex
                           )}/${_}`
                         );
