@@ -5,6 +5,9 @@ Quizzup is a fun and interactive web application that allows you to create and s
 ## Usage
 
 
+https://github.com/Omkar-Jawalkar/Quiz-app/assets/82781128/415ca6e4-6ea8-4169-8682-3d9c39e3bd22
+
+
 ## Features 💫
 
 - **Quiz Creation**: Craft quizzes with various question types, including multiple choice, true/false, and open-ended questions. Let your creativity shine! ✨
