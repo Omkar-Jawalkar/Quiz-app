@@ -21,6 +21,14 @@ https://github.com/Omkar-Jawalkar/Quiz-app/assets/82781128/415ca6e4-6ea8-4169-86
 2. Navigate to the project directory: `cd quizzup`
 3. Install dependencies: `npm install`
 
+   Or
+> If you have docker installed then
+```bash
+cd Quiz-app
+docker build . -t quizzapp
+docker run -p 3000:3000 quizzapp
+```
+
 
 ## Usage 🚀
 
